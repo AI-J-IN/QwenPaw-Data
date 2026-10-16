@@ -6,6 +6,40 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.3.2] - Unreleased
+
+### Added
+
+- Native console capability discovery and ephemeral per-turn model bindings for
+  the standalone QwenPaw Data app 1.0.3 on stable QwenPaw 2.2.2.
+- Dataset discovery filtered by datasource, with selected datasets persisted
+  in chats and included in agent input.
+- Readable session display codes and names.
+
+### Fixed
+
+- Include SQLAlchemy in the standalone Context requirements, matching the
+  package dependencies used by database adapters.
+- Workspace MCP defaults are available to native analysis sessions.
+- Later turns pick up model changes while retaining conversation memory.
+- Linux sandbox artifact paths retain POSIX separators on Windows hosts in
+  agent/subagent prompts and SQL artifact responses. Native Windows host paths
+  retain drive and UNC semantics.
+
+### Security
+
+- Refresh Python and frontend dependency locks to address the release audit
+  findings, and raise affected direct dependency floors where compatible with
+  the stable Host. Audit the standalone Context lock in CI and remove obsolete
+  sqlparse audit exceptions now that both locks resolve its patched release.
+- Session reads, mutations, streams, attachments, and scheduled runs enforce
+  the trusted caller's user identity. The embedding Host binds this identity
+  to its authenticated user, workspace, and app.
+- Per-turn model credentials are excluded from persisted chat/request data.
+
+Host vNext delegation, durable submissions, capability execution, and artifact
+contracts remain on the separate vNext branch.
+
 ## [0.3.1] - 2026-09-10
 
 ### Added
